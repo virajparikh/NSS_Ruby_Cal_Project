@@ -3,6 +3,9 @@ month = ARGV[0]
 year = ARGV[1]
 puts `cal #{month} #{year}`
 
+days = [ :Su, :Mo, :Tu, :We, :Th, :Fr, :Sa ]
+
+months = [ :January, :February, :March, :April, :May, :June, :July, :August, :September, :August, :September, :October, :November, :December ]  # these should be associated with a numbers.  Use hashses??
 
 class Calendar
   attr_reader :month
@@ -25,12 +28,34 @@ class Calendar
   	if year % 400 == 0
   		true
   	elsif year % 100 == 0
-  	  	false
+  	  false
   	elsif year % 4 == 0
-		true
-	else
-		false
-	end
+		  true
+	  else
+		  false
+	  end
   end
+
+  def leap_year(month, year)
+    if year % 400 == 0
+      true
+    elsif year % 100 == 0
+      false
+    elsif year % 4 == 0
+      true
+    else
+      false
+    end
+  end
+
+  def number_of_weeks_in_month
+    # if month has 31 days and month begins on Friday or Saturday, then month has 6 weeks
+    # elsif month has 30 days and month begins on Saturday, then month has 6 weeks
+    # elsif month is February, is not a leap year, and begins on Sunday, then month has 4 weeks
+    # else month has 5 weeks
+
+  end
+
+
 
 end

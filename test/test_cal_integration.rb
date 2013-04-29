@@ -4,12 +4,23 @@ require './cal.rb'
 class CalendarIntegrationTest < Test::Unit::TestCase
 
   def test_01_cal_output
-    assert_equal(`cal 2 2012`,`ruby cal.rb 2 2012`)
+    assert_equal(`cal 2 2012`,`ruby year_cal.rb 2 2012`)
   end
 
-  def test_02_leap_year
-    cal = Calendar.new(1, 2100)
+  def test_02_leap_year?
+    cal = Calendar.new(1, 2000)
     assert cal.leap_year?
   end
+
+  def test_02a_leap_year
+    cal = Calendar.new
+    assert_equal true, cal.leap_year(1, 2000)
+  end
+
+  def test_3_number_of_weeks_in_month
+  	cal = Calendar.new
+  	assert_equal(6, `cal 3 2013`)
+  end
+
 
 end
