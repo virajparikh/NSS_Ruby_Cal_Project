@@ -14,7 +14,7 @@ class Calendar
   end
 
   def leap_year
-  	# 	if year is divisible by 400 then
+  # 	if year is divisible by 400 then
 	#    is_leap_year
 	# 	else if year is divisible by 100 then
 	#    not_leap_year
