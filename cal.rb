@@ -8,8 +8,8 @@ class Calendar
   attr_reader :month
   attr_reader :year
 
-  def initialize( year)
-  	@month = month
+  def initialize(year)
+  	# @month = month
   	@year = year
   end
 
@@ -39,14 +39,14 @@ class Calendar
     # elsif month is February, is not a leap year, and begins on Sunday, then month has 4 weeks
     # else month has 5 weeks
 
-  # end
+  end
 
 end
 
-class Day
+# class Day
 
-# # days = [ :Su, :Mo, :Tu, :We, :Th, :Fr, :Sa ]
+# # # days = [ :Su, :Mo, :Tu, :We, :Th, :Fr, :Sa ]
 
-# class Month
+# # class Month
 
- months = { 1 => :January,  2 => :February, 3 => :March, 4 => :April, 5 => :May, 6 => :June, 7 => :July, 8 => :August, 9 => :September, 10 => :October, 11 => :November, 12 => :December }  # these should be associated with a numbers.  Use hashses??
+#  months = { 1 => :January,  2 => :February, 3 => :March, 4 => :April, 5 => :May, 6 => :June, 7 => :July, 8 => :August, 9 => :September, 10 => :October, 11 => :November, 12 => :December }  # these should be associated with a numbers.  Use hashes??
