@@ -44,6 +44,33 @@ class Calendar
     "Su Mo Tu We Th Fr Sa"
   end
 
+  def days_in_month
+    thirty_one = [1,3,5,7,8,10,12]
+    thirty = [4,6,9,11]
+    if thirty_one.include? month
+      return 31
+    elsif thirty.include? month
+      return 30
+    elsif month == 2 && leap_year?
+      return 29
+    else
+      return 28
+    end
+  end
+
+  def zeller
+    month = 13 && year = year + 1 if month == 1
+      
+    month = 14 && year = year + 2 elsif month == 2
+      
+    end
+    # 3 = March, 4 = April, 5 = May, ..., 13 = January, 14 = February
+    # q = 1 to get the first day of the month
+    return ((1 + (26 * (month + 1) / 10) + year + (year / 4) + (6 * (year / 100)) + (year / 400)) % 7)
+    # 0 = Sat, 1 = Sun, 2 = Mon, 3 = Tues, 4 = Wed, 5 = Thurs, 6 = Fri
+  end
+
+
   # def number_of_weeks_in_month
   #   # if month has 31 days and month begins on Friday or Saturday, then month has 6 weeks
   #   # elsif month has 30 days and month begins on Saturday, then month has 6 weeks
