@@ -3,8 +3,20 @@ require './cal.rb'
 
 class CalendarIntegrationTest < Test::Unit::TestCase
 
-  def test_01_cal_output
+  def test_01a_cal_output
     assert_equal(`cal 2 2012`,`ruby year_cal.rb 2 2012`)
+  end
+
+  def test_01b_cal_output
+    assert_equal(`cal 3 2013`,`ruby year_cal.rb 3 2013`)
+  end
+
+  def test_01c_cal_output
+    assert_equal(`cal 2 2015`,`ruby year_cal.rb 2 2015`)
+  end
+
+  def test_01d_cal_output
+    assert_equal(`cal 6 2013`,`ruby year_cal.rb 6 2013`)
   end
 
   def test_02a_leap_year?
@@ -34,27 +46,27 @@ class CalendarIntegrationTest < Test::Unit::TestCase
 
   def test_4_print_days_header
   	cal = Calendar.new(3, 2013)
-  	assert_equal("Su Mo Tu We Th Fr Sa", cal.days_header)
+  	assert_equal("Su Mo Tu We Th Fr Sa\n", cal.days_header)
   end
 
   def test_5a_days_in_month
     cal = Calendar.new(5, 2012)
-    assert_equal(31, cal.days_in_month)
+    assert_equal((1..31).to_a, cal.days_in_month)
   end
 
   def test_5b_days_in_month
     cal = Calendar.new(2, 2012)
-    assert_equal(29, cal.days_in_month)
+    assert_equal((1..29).to_a, cal.days_in_month)
   end
 
   def test_5c_days_in_month
     cal = Calendar.new(2, 2011)
-    assert_equal(28, cal.days_in_month)
+    assert_equal((1..28).to_a, cal.days_in_month)
   end
 
   def test_5d_days_in_month
-    cal = Calendar.new(4, 3125)
-    assert_equal(30, cal.days_in_month)
+    cal = Calendar.new(4, 3000)
+    assert_equal((1..30).to_a, cal.days_in_month)
   end
 
   def test_6a_zeller
@@ -83,9 +95,59 @@ class CalendarIntegrationTest < Test::Unit::TestCase
   end
 
   def test_6f_zeller
-  	cal = Calendar.new(2, 2024)
-  	assert_equal(5, cal.zeller)
+    cal = Calendar.new(2, 2024)
+    assert_equal(5, cal.zeller)
   end
+
+  def test_7a_index_error
+    assert_raise IndexError do
+      cal = Calendar.new(13, 1977)
+    end
+  end
+
+  def test_7b_index_error
+    assert_raise IndexError do
+      cal = Calendar.new(1, 1797)
+    end
+  end
+
+  def test_7c_index_error
+    assert_raise IndexError do
+      cal = Calendar.new(-3, 1977)
+    end
+  end
+
+  def test_7d_index_error
+    assert_raise IndexError do
+      cal = Calendar.new(-2, 4000)
+    end
+  end
+
+
+  # def test_7b_zeller_to_day
+  # 	cal = Calendar.new(6, 2013)
+  # 	assert_equal("Sa", cal.zeller_to_day)
+  # end
+
+  # def test_7c_zeller_to_day
+  # 	cal = Calendar.new(9, 2010)
+  # 	assert_equal("We", cal.zeller_to_day)
+  # end
+
+  # def test_7d_zeller_to_day
+  # 	cal = Calendar.new(12, 2096)
+  # 	assert_equal("Sa", cal.zeller_to_day)
+  # end
+
+  # def test_7e_zeller_to_day
+  # 	cal = Calendar.new(1, 2015)
+  # 	assert_equal("Th", cal.zeller_to_day)
+  # end
+
+  # def test_7f_zeller_to_day
+  #   cal = Calendar.new(2, 2024)
+  #   assert_equal("Th", cal.zeller_to_day)
+  # end
 
 
 end
