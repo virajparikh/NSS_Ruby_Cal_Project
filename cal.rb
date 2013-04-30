@@ -59,14 +59,19 @@ class Calendar
   end
 
   def zeller
-    month = 13 && year = year + 1 if month == 1
-      
-    month = 14 && year = year + 2 elsif month == 2
-      
-    end
+    m = @month
+    y = @year
+    if m == 1
+      m = 13
+      y = @year - 1
+    elsif m == 2
+      m = 14
+      y = @year - 1
     # 3 = March, 4 = April, 5 = May, ..., 13 = January, 14 = February
-    # q = 1 to get the first day of the month
-    return ((1 + (26 * (month + 1) / 10) + year + (year / 4) + (6 * (year / 100)) + (year / 400)) % 7)
+    # for Jan or Feb, y = the previous year
+    # q = 1 to get the first day of the month_name
+    end
+    return ((1 + ((26 * (m + 1)) / 10) + y + (y / 4) + (6 * (y / 100)) + (y / 400)) % 7)
     # 0 = Sat, 1 = Sun, 2 = Mon, 3 = Tues, 4 = Wed, 5 = Thurs, 6 = Fri
   end
 

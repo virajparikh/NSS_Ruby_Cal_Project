@@ -68,13 +68,23 @@ class CalendarIntegrationTest < Test::Unit::TestCase
   end
 
   def test_6c_zeller
+  	cal = Calendar.new(9, 2010)
+  	assert_equal(4, cal.zeller)
+  end
+
+  def test_6d_zeller
+  	cal = Calendar.new(12, 2096)
+  	assert_equal(0, cal.zeller)
+  end
+
+  def test_6e_zeller
   	cal = Calendar.new(1, 2015)
   	assert_equal(5, cal.zeller)
   end
 
-  def test_6d_zeller
+  def test_6f_zeller
   	cal = Calendar.new(2, 2024)
-  	assert_equal(0, cal.zeller)
+  	assert_equal(5, cal.zeller)
   end
 
 
