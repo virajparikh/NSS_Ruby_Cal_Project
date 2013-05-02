@@ -4,19 +4,19 @@ require './cal.rb'
 class CalendarIntegrationTest < Test::Unit::TestCase
 
   def test_01a_cal_output
-    assert_equal(`cal 2 2012`,`ruby year_cal.rb 2 2012`)
+    assert_equal(`cal 2 2012`,`ruby cal.rb 2 2012`)
   end
 
   def test_01b_cal_output
-    assert_equal(`cal 3 2013`,`ruby year_cal.rb 3 2013`)
+    assert_equal(`cal 3 2013`,`ruby cal.rb 3 2013`)
   end
 
   def test_01c_cal_output
-    assert_equal(`cal 2 2015`,`ruby year_cal.rb 2 2015`)
+    assert_equal(`cal 2 2015`,`ruby cal.rb 2 2015`)
   end
 
   def test_01d_cal_output
-    assert_equal(`cal 6 2013`,`ruby year_cal.rb 6 2013`)
+    assert_equal(`cal 6 2013`,`ruby cal.rb 6 2013`)
   end
 
   def test_02a_leap_year?
@@ -41,12 +41,12 @@ class CalendarIntegrationTest < Test::Unit::TestCase
  
   def test_3_print_month_year_header
   	cal = Calendar.new(3, 2013)
-  	assert_equal("     March 2013     ", cal.month_year_header)
+  	assert_equal("     March 2013      ", cal.month_year_header)
   end
 
   def test_4_print_days_header
   	cal = Calendar.new(3, 2013)
-  	assert_equal("Su Mo Tu We Th Fr Sa\n", cal.days_header)
+  	assert_equal("Su Mo Tu We Th Fr Sa\n ", cal.days_header)
   end
 
   def test_5a_days_in_month
@@ -90,7 +90,7 @@ class CalendarIntegrationTest < Test::Unit::TestCase
   end
 
   def test_6e_zeller
-  	cal = Calendar.new(1, 2015)
+  	cal = Calendar.new(1, 2004)
   	assert_equal(5, cal.zeller)
   end
 
@@ -123,30 +123,9 @@ class CalendarIntegrationTest < Test::Unit::TestCase
     end
   end
 
-
-  # def test_7b_zeller_to_day
-  # 	cal = Calendar.new(6, 2013)
-  # 	assert_equal("Sa", cal.zeller_to_day)
-  # end
-
-  # def test_7c_zeller_to_day
-  # 	cal = Calendar.new(9, 2010)
-  # 	assert_equal("We", cal.zeller_to_day)
-  # end
-
-  # def test_7d_zeller_to_day
-  # 	cal = Calendar.new(12, 2096)
-  # 	assert_equal("Sa", cal.zeller_to_day)
-  # end
-
-  # def test_7e_zeller_to_day
-  # 	cal = Calendar.new(1, 2015)
-  # 	assert_equal("Th", cal.zeller_to_day)
-  # end
-
-  # def test_7f_zeller_to_day
-  #   cal = Calendar.new(2, 2024)
-  #   assert_equal("Th", cal.zeller_to_day)
+  # def test_8_first_line_spaces
+  #   cal = Calendar.new(1, 2004)
+  #   assert_equal([" "," "," "," "," "," "," "," "," "," "," "," "], cal.layout)
   # end
 
 

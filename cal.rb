@@ -29,11 +29,11 @@ class Calendar
   end
 
   def month_year_header
-    "#{@month_name} #{year}".center(20)
+    "#{@month_name} #{year}".center(21)
   end
 
   def days_header
-    "Su Mo Tu We Th Fr Sa\n"
+    "Su Mo Tu We Th Fr Sa\n "
   end
 
   def days_in_month
@@ -65,31 +65,76 @@ class Calendar
     # output: 0 => Sat, 1 => Sun, 2 => Mon, 3 => Tues, 4 => Wed, 5 => Thurs, 6 => Fri
   end
 
-  # def layout
-  # #   if zeller == 1
+  # def first_row_layout
+  #   z = zeller
+  #   if z == 0
+  #     spaces = 18
+  #   else spaces = (z - 1) * 3
+  #   end
+  #   layoutArray = []
+  #   spaces.times do 
+  #     layoutArray << " "
 
-  #   if days_in_month == 30 && zeller == 1
-  #   #Sunday, 30 days
-  #   "   September 2013\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30\n\n"
-  #   elsif @month.days_in_month == 31 && @month.zeller == 1
-  #   #Sunday, 31 days
-  #   "   December 2013\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31\n\n"
-  #   elsif @month.days_in_month == 30 && @month.zeller == 2
-  #   #Monday, 30 days
-  #   "     April 2013\nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29 30\n\n"
-  #   elsif @month.days_in_month == 31 && @month.zeller == 2
-  #   #Monday, 31 days
-  #   "     July 2013\nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29 30 31\n\n"
-  #   #Tuesday, 31 days
-  #   "    October 2013\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5\n 6  7  8  9 10 11 12\n13 14 15 16 17 18 19\n20 21 22 23 24 25 26\n27 28 29 30 31\n\n"
-  #   #Wednesday, 31 days
-  #   "      May 2013\nSu Mo Tu We Th Fr Sa\n          1  2  3  4\n 5  6  7  8  9 10 11\n12 13 14 15 16 17 18\n19 20 21 22 23 24 25\n26 27 28 29 30 31\n\n"
-  #   #Thursday, 31 days
-  #   "    August 2013\nSu Mo Tu We Th Fr Sa\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30 31\n\n"
-  #   #Friday, 31 days
-  #   "     March 2013\nSu Mo Tu We Th Fr Sa\n                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n"
-  #   #Saturday, 30 days
-  #   "     June 2013\nSu Mo Tu We Th Fr Sa\n                   1\n 2  3  4  5  6  7  8\n 9 10 11 12 13 14 15\n16 17 18 19 20 21 22\n23 24 25 26 27 28 29\n30\n"
+  #   count = spaces
+  #   i = 0
+  #   until count == 20
+  #     layoutArray << days_in_month.shift
+  #     count += 1
+  #     i += 1
+    
+
+
+  #   while days_in_month
+  #      if i < 9
+  #       layoutArray << days_in_month.shift
+  #       count += 1
+  #       i += 1
+  #       if count == 20
+  #         layoutArray << "\n"
+  #         count = 0
+  #         layoutArray << days_in_month[i]
+  #         count += 1
+  #         i += 1
+  #       else
+  #         layoutArray << "  "
+  #         count += 2
+          
+
+  #         else layoutArray << " "
+  #         count += 1
+  #       else
+
+ 
+
+
+    
+  # end
+
+
+
+
+    # if days_in_month == 30 && zeller == 1
+    # #Sunday, 30 days
+    # "   September 2013\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30\n\n"
+    # elsif @month.days_in_month == 31 && @month.zeller == 1
+    # #Sunday, 31 days
+    # "   December 2013\nSu Mo Tu We Th Fr Sa\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31\n\n"
+    # elsif @month.days_in_month == 30 && @month.zeller == 2
+    # #Monday, 30 days
+    # "     April 2013\nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29 30\n\n"
+    # elsif @month.days_in_month == 31 && @month.zeller == 2
+    # #Monday, 31 days
+    # "     July 2013\nSu Mo Tu We Th Fr Sa\n    1  2  3  4  5  6\n 7  8  9 10 11 12 13\n14 15 16 17 18 19 20\n21 22 23 24 25 26 27\n28 29 30 31\n\n"
+    # #Tuesday, 31 days
+    # "    October 2013\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5\n 6  7  8  9 10 11 12\n13 14 15 16 17 18 19\n20 21 22 23 24 25 26\n27 28 29 30 31\n\n"
+    # #Wednesday, 31 days
+    # "      May 2013\nSu Mo Tu We Th Fr Sa\n          1  2  3  4\n 5  6  7  8  9 10 11\n12 13 14 15 16 17 18\n19 20 21 22 23 24 25\n26 27 28 29 30 31\n\n"
+    # #Thursday, 31 days
+    # "    August 2013\nSu Mo Tu We Th Fr Sa\n             1  2  3\n 4  5  6  7  8  9 10\n11 12 13 14 15 16 17\n18 19 20 21 22 23 24\n25 26 27 28 29 30 31\n\n"
+    # #Friday, 31 days
+    # "     March 2013\nSu Mo Tu We Th Fr Sa\n                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n"
+    # #Saturday, 30 days
+    # "     June 2013\nSu Mo Tu We Th Fr Sa\n                   1\n 2  3  4  5  6  7  8\n 9 10 11 12 13 14 15\n16 17 18 19 20 21 22\n23 24 25 26 27 28 29\n30\n"
 
 
 
