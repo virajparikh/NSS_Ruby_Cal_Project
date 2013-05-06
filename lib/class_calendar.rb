@@ -11,14 +11,14 @@ class Calendar
   end
 
   def leap_year?
-  	if year % 400 == 0  # if year is divisible by 400 then
+  	if year % 400 == 0  # if year is divisible by 400 then...
   		true  # is_leap_year
-  	elsif year % 100 == 0  # else if year is divisible by 100 then
+  	elsif year % 100 == 0  # else if year is divisible by 100 then...
   	  false  # not_leap_year
-  	elsif year % 4 == 0  # else if year is divisible by 4 then
-		  true  # is_leap_year
+  	elsif year % 4 == 0  # else if year is divisible by 4 then...
+		  true  # is a leap year
 	  else  # else
-		  false  # not_leap_year
+		  false  # is not leap year
 	  end
   end
 
@@ -57,7 +57,7 @@ class Calendar
     firstDay = ((1 + ((26 * (m + 1)) / 10) + y + (y / 4) + (6 * (y / 100)) + (y / 400)) % 7)
     # q = 1 to get the first day of the month
     # output: 0 => Sat, 1 => Sun, 2 => Mon, 3 => Tues, 4 => Wed, 5 => Thurs, 6 => Fri
-    firstDay = 7 if firstDay == 0 #convert Saturday to 7
+    firstDay = 7 if firstDay == 0 #converts Saturday to 7
     firstDay
   end
 
@@ -80,13 +80,13 @@ class Calendar
     days_array += allDays
     calendar = []
     week = 0
-    while week < 6
-      newdays = days_array.shift(7)
+    while week < 6  #6 weeks max
+      newdays = days_array.shift(7) #plucking the first 7 string elements from the array
       newdays = newdays.join
-      newdays.slice!(0) unless week == 0
+      newdays.slice!(0) unless week == 0 #slicing off the first space of each line
       calendar <<  newdays
-      calendar << "\n"
-      week += 1
+      calendar << "\n"  #line break at the end of each line
+      week += 1 #up to 6 weeks max
     end
     calendar = calendar.join
   end
@@ -97,11 +97,7 @@ class Calendar
 end
 
 
-# if month has 31 days and month begins on Friday or Saturday, then month has 6 weeks
-# elsif month has 30 days and month begins on Saturday, then month has 6 weeks
-# elsif month is February, is not a leap year, and begins on Sunday, then month has 4 weeks
-# else month has 5 weeks
-  
+
   # def first_row_layout
   #   z = zeller
   #   if z == 0
@@ -117,7 +113,6 @@ end
   #     i = 0
   #     count = spaces + 1
   #     while count <= 20
-
 
   #   while days_in_month
   #      if i < 9
