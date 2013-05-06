@@ -78,16 +78,15 @@ class Calendar
       end
     end
     days_array += allDays
-    days_array
     calendar = []
-    z = 0
-    while z < 6
+    week = 0
+    while week < 6
       newdays = days_array.shift(7)
       newdays = newdays.join
-      newdays.slice!(0) unless z == 0
+      newdays.slice!(0) unless week == 0
       calendar <<  newdays
       calendar << "\n"
-      z += 1
+      week += 1
     end
     calendar = calendar.join
   end
