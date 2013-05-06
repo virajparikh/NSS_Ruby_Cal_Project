@@ -1,7 +1,7 @@
 require 'test/unit'
-require './cal.rb'
+require './lib/class_calendar.rb'
 
-class CalendarIntegrationTest < Test::Unit::TestCase
+class CalendarTest < Test::Unit::TestCase
 
   def test_01a_cal_output
     assert_equal(`cal 2 2012`,`ruby cal.rb 2 2012`)
@@ -41,12 +41,12 @@ class CalendarIntegrationTest < Test::Unit::TestCase
  
   def test_3_print_month_year_header
   	cal = Calendar.new(3, 2013)
-  	assert_equal("     March 2013      ", cal.month_year_header)
+  	assert_equal("     March 2013", cal.month_year_header)
   end
 
   def test_4_print_days_header
   	cal = Calendar.new(3, 2013)
-  	assert_equal("Su Mo Tu We Th Fr Sa\n ", cal.days_header)
+  	assert_equal("     March 2013\nSu Mo Tu We Th Fr Sa\n", cal.complete_header)
   end
 
   def test_5a_days_in_month
@@ -76,7 +76,7 @@ class CalendarIntegrationTest < Test::Unit::TestCase
 
   def test_6b_zeller
   	cal = Calendar.new(6, 2013)
-  	assert_equal(0, cal.zeller)
+  	assert_equal(7, cal.zeller)
   end
 
   def test_6c_zeller
@@ -86,7 +86,7 @@ class CalendarIntegrationTest < Test::Unit::TestCase
 
   def test_6d_zeller
   	cal = Calendar.new(12, 2096)
-  	assert_equal(0, cal.zeller)
+  	assert_equal(7, cal.zeller)
   end
 
   def test_6e_zeller
@@ -123,10 +123,10 @@ class CalendarIntegrationTest < Test::Unit::TestCase
     end
   end
 
-  # def test_8_first_line_spaces
-  #   cal = Calendar.new(1, 2004)
-  #   assert_equal([" "," "," "," "," "," "," "," "," "," "," "," "], cal.layout)
-  # end
+  def test_8_month_layout
+    cal = Calendar.new(3, 2024)
+    assert_equal(5, cal.month_layout)
+  end
 
 
 end
