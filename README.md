@@ -9,6 +9,8 @@ program is in: lib/class_calendar.rb
 
 run program in: lib/rubycal.rb
 
+** in the Command Line, run 'ruby rubycal.rb 6 2013'
+
 unit tests include: 
 
 1. calendar output
