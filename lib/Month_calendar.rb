@@ -1,4 +1,4 @@
-class Month_calendar
+class MonthCalendar
   attr_reader :month
   attr_reader :year
 
@@ -24,15 +24,17 @@ class Month_calendar
 
   def zeller
     # see definition of Zeller's Congruence to find the day of the week of whatever date picked: http://en.wikipedia.org/wiki/Zeller's_congruence
-    if @month == 1
-      @month = 13
-      @year = @year - 1
-    elsif @month == 2
-      @month = 14
-      @year = @year - 1
+    m = @month
+    y = @year
+    if m == 1
+      m = 13
+      y = @year - 1
+    elsif m == 2
+      m = 14
+      y = @year - 1
     end
     # q = 1 to get the first day of the month
-    firstDay = ((1 + ((26 * (@month + 1)) / 10) + @year + (@year / 4) + (6 * (@year / 100)) + (@year / 400)) % 7)
+    firstDay = ((1 + ((26 * (m + 1)) / 10) + y + (y / 4) + (6 * (y / 100)) + (y / 400)) % 7)
     # output: 0 => Sat, 1 => Sun, 2 => Mon, 3 => Tues, 4 => Wed, 5 => Thurs, 6 => Fri
     firstDay = 7 if firstDay == 0 #converts Saturday to 7
     firstDay
@@ -41,11 +43,11 @@ class Month_calendar
   def days_in_month
     thirty_one = [1,3,5,7,8,10,12]
     thirty = [4,6,9,11]
-    if thirty_one.include? month
+    if thirty_one.include? @month
       return (1..31).to_a
-    elsif thirty.include? month
+    elsif thirty.include? @month
       return (1..30).to_a
-    elsif month == 2 && leap_year?
+    elsif leap_year?
       return (1..29).to_a
     else
       return (1..28).to_a
@@ -61,11 +63,11 @@ class Month_calendar
     end
     days_array = beginSpace
     allDays = days_in_month
-    allDays.collect! do |days|
-      if days < 10 && days != 1
-        "  " + days.to_s
+    allDays.collect! do |date|
+      if date < 10 && date != 1
+        "  " + date.to_s
       else
-        " " + days.to_s
+        " " + date.to_s
       end
     end
     days_array += allDays
