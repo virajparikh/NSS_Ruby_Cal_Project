@@ -1,29 +1,26 @@
-require 'Month_calendar'
+# require 'Month_calendar'
 
 class YearCalendar
 
+  attr_reader :year
+
   def initialize(year)
-  	@year = year
-    raise IndexError if year < 1800 || year > 3000
+    @year = year
+    raise IndexError if @year < 1800 || @year > 3000
   end
 
-  def year_header
-    "#{@year}".center(63).rstrip + "\n\n"
+  def year_calendar
+    year_array = []
+    (1..12).each do |month|
+      year_array << MonthCalendar.new(month, @year).weeks_layout
+    end
+    puts year_array
   end
 
-  def first_month_set_header
-    first_set = "      January               February               March\n"
-    days_of_week = "Su Mo Tu We Th Fr Sa"
-    first_month_set_header = first_set + days_of_week + "  " + days_of_week + "  " + days_of_week + "\n"
-  end
-
-  # def complete_header
-  #   "#{month_year_header}\nSu Mo Tu We Th Fr Sa\n"
-  # end
-
-
-  # def print_year_calendar
-  #   print "#{ }#{ }"
+  # def first_row_header
+  #   i = 0
+  #   j = 0
+  #   puts year_calendar[0][2].join(' ') + '  ' + year_calendar[1][2].join(' ') + '  ' + year_calendar[2][2].join(' ')
   # end
 
 end

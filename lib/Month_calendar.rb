@@ -54,46 +54,70 @@ class MonthCalendar
     end
   end
 
-  def month_layout
-    beginSpace = []
+  def month_year_header
+    month_name = MONTHS[@month - 1]
+    "#{month_name} #{year}".center(20)
+  end
+
+  # def days_with_spaces
+  #   begin_space = []
+  #   i = 1
+  #   until i == zeller
+  #     begin_space << "   "
+  #     i += 1
+  #   end
+
+  #   all_days_array = days_in_month
+  #   all_days_array.collect! do |date|
+  #     if date < 10 && date != 1
+  #       "  " + date.to_s
+  #     else
+  #       " " + date.to_s
+  #     end
+  #   end
+  #   days_with_spaces_array = begin_space
+  #   days_with_spaces_array += all_days_array
+  #   days_with_spaces_array
+  # end
+
+  def weeks_layout
+    begin_space = []
     i = 1
     until i == zeller
-    beginSpace << "   "
-    i += 1
+      begin_space << "   "
+      i += 1
     end
-    days_array = beginSpace
-    allDays = days_in_month
-    allDays.collect! do |date|
+  
+    all_days_array = days_in_month
+    all_days_array.collect! do |date|
       if date < 10 && date != 1
         "  " + date.to_s
       else
         " " + date.to_s
       end
     end
-    days_array += allDays
-    calendar = []
-    week = 0
-    while week < 6  #6 weeks max
-      newdays = days_array.shift(7) #plucking the first 7 string elements from the array
-      newdays = newdays.join
-      newdays.slice!(0) unless week == 0 #slicing off the first space of each line
-      calendar <<  newdays
-      calendar << "\n"  #line break at the end of each line
-      week += 1 #up to 6 weeks max
+    days_and_spaces_array = begin_space
+    days_and_spaces_array += all_days_array
+
+    weeks = []
+    weeks << [month_year_header]
+    weeks << ["Su Mo Tu We Th Fr Sa"]
+    j = 0
+    while j < 6  #6 weeks max
+      seven_days = days_and_spaces_array.shift(7) #plucks the first 7 string elements from the array
+      seven_days = seven_days.join
+      seven_days.slice!(0) unless j == 0 #slicing off the first space of each line
+      weeks << [seven_days]
+      # calendar << "\n"  #line break at the end of each line
+      j += 1 #up to 6 weeks max
     end
-    calendar = calendar.join
-  end
-
-  def month_year_header
-    month_name = MONTHS[@month - 1]
-    "#{month_name} #{year}".center(20).rstrip
-  end
-
-  def complete_header
-    "#{month_year_header}\nSu Mo Tu We Th Fr Sa\n"
+    weeks
   end
 
   def print_month_calendar
-    print "#{complete_header}#{month_layout}"
+    weeks_layout.each do |week|
+      puts week.join
+    end
   end
+
 end
